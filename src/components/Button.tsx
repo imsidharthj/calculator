@@ -19,7 +19,7 @@ const Button = ({
 }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
   
-  let variantClass = 'calculator-key-number'; // Default is now number style
+  let variantClass = 'calculator-key-number';
   
   switch (variant) {
     case 'operator':
@@ -45,8 +45,6 @@ const Button = ({
 
   const handleClick = () => {
     setIsPressed(true);
-    
-    // Add a small delay to show the pressed state
     setTimeout(() => {
       setIsPressed(false);
       onClick();

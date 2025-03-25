@@ -2,9 +2,6 @@
 import { useState } from 'react';
 import { calculate, togglePlusMinus, toPercentage } from '@/utils/calculatorUtils';
 
-/**
- * Custom hook that encapsulates calculator state and operations
- */
 export const useCalculator = () => {
   const [display, setDisplay] = useState('0');
   const [expression, setExpression] = useState('');
