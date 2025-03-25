@@ -1,8 +1,3 @@
-
-/**
- * Calculator state and interface types
- */
-
 export interface CalculatorState {
   display: string;
   expression: string;

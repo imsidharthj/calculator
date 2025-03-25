@@ -28,7 +28,6 @@ const Calculator = () => {
     handlePercentage
   } = useCalculator();
 
-  // Prepare state object for the input hook
   const calculatorState = {
     display,
     expression,
@@ -44,7 +43,6 @@ const Calculator = () => {
     setCalculated
   };
 
-  // Prepare handlers object for the input hook
   const inputHandlers = {
     inputDigit,
     inputDecimal,
@@ -55,7 +53,6 @@ const Calculator = () => {
     handlePercentage
   };
 
-  // Set up keyboard event listeners
   useCalculatorInput(calculatorState, inputHandlers);
 
   return (

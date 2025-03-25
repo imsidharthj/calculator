@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { CalculatorState } from '@/types/calculator';
 
@@ -12,9 +11,6 @@ type InputHandlers = {
   handlePercentage: () => void;
 };
 
-/**
- * Custom hook for handling calculator inputs, including keyboard events
- */
 export const useCalculatorInput = (
   state: CalculatorState,
   handlers: InputHandlers
@@ -34,12 +30,10 @@ export const useCalculatorInput = (
     
     const key = e.key;
 
-    // Handle numbers
     if (/\d/.test(key)) {
       inputDigit(key);
     }
     
-    // Handle operators
     if (key === '+' || key === '-') {
       performOperation(key);
     }
@@ -50,27 +44,22 @@ export const useCalculatorInput = (
       performOperation('÷');
     }
     
-    // Handle decimal
     if (key === '.') {
       inputDecimal();
     }
     
-    // Handle comma (alternate decimal separator)
     if (key === ',') {
       inputDigit(',');
     }
     
-    // Handle equals
     if (key === '=' || key === 'Enter') {
       handleEqual();
     }
     
-    // Handle clear
     if (key === 'Escape' || key === 'c' || key === 'C') {
       clearAll();
     }
     
-    // Handle backspace
     if (key === 'Backspace') {
       if (!state.waitingForOperand && !state.calculated) {
         const newDisplay = state.display.length === 1 ? '0' : state.display.substring(0, state.display.length - 1);
@@ -79,7 +68,6 @@ export const useCalculatorInput = (
     }
   };
 
-  // Set up keyboard event listeners
   useEffect(() => {
     document.addEventListener('keydown', handleKeyboardInput);
     return () => {
