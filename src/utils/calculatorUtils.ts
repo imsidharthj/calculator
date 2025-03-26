@@ -1,3 +1,9 @@
+export interface CalculationHistory {
+  expression: string;
+  result: string;
+  timestamp: number;
+}
+
 export const calculate = (firstValue: string, secondValue: number, op: string): number => {
   const sanitizedFirstValue = firstValue.replace(/,/g, '.');
   const first = parseFloat(sanitizedFirstValue);
@@ -10,7 +16,9 @@ export const calculate = (firstValue: string, secondValue: number, op: string): 
     case '×':
       return first * secondValue;
     case '÷':
-      return secondValue !== 0 ? first / secondValue : NaN;
+      const result = secondValue !== 0 ? first / secondValue : NaN;
+      // debugger
+      return result
     default:
       return secondValue;
   }
@@ -28,3 +36,12 @@ export const toPercentage = (value: string): string => {
   const numValue = parseFloat(sanitizedValue) / 100;
   return String(numValue);
 };
+
+export const sanitizeInput = (input: string): string => {
+  let sanitized = input.replace(/^0+(?!$)/, '');
+  const parts = sanitized.split('.');
+  if (parts.length > 2) {
+    sanitized = `${parts[0]}.${parts.slice(1).join('')}`;
+  }
+  return sanitized || '0';
+}
